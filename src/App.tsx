@@ -1,15 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from "react";
+import User from "./components/User";
+import Button from "./components/Button";
+import fetchUserDetails from "./services/user/fetchUserDetails";
+import { getUserDetailObject } from "./utils/utils";
 
-import './App.css'
+import "./App.css";
 
 function App() {
+  const [userDetail, setUserDetail] = useState({});
+
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+
+  async function getUserDetails() {
+    const userDetailResponse = await fetchUserDetails();
+    const userDetailsObject = getUserDetailObject(userDetailResponse);
+    setUserDetail(userDetailsObject);
+  }
 
   return (
     <>
-     <h1>Hello world</h1>
-        
+      <User userDetail={userDetail} />
+      <Button text='refresh' buttonAction={getUserDetails} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
