@@ -1,13 +1,4 @@
-interface UserDetail {
-  name: Name;
-  email: string;
-}
-
-interface Name {
-  first: string;
-  last: string;
-  title: string;
-}
+import { UserDetail, Name } from "../utils/utils";
 
 const User = ({ userDetail }: { userDetail: UserDetail }): JSX.Element => {
   // const { name, email }: { name: object; email: string } = userDetail;
