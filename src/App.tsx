@@ -6,16 +6,28 @@ import { getUserDetailObject } from "./utils/utils";
 
 import "./App.css";
 
-function App() {
-  const [userDetail, setUserDetail] = useState({});
+interface UserDetail {
+  name: Name;
+  email: string;
+}
+
+interface Name {
+  first: string;
+  last: string;
+  title: string;
+}
+
+function App(): JSX.Element {
+  const [userDetail, setUserDetail] = useState<UserDetail>({} as UserDetail);
 
   useEffect(() => {
     getUserDetails();
   }, []);
 
-  async function getUserDetails() {
+  async function getUserDetails(): Promise<void> {
     const userDetailResponse = await fetchUserDetails();
-    const userDetailsObject = getUserDetailObject(userDetailResponse);
+    const userDetailsObject: UserDetail =
+      getUserDetailObject(userDetailResponse);
     setUserDetail(userDetailsObject);
   }
 

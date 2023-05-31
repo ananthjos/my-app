@@ -1,6 +1,9 @@
-import React from "react";
+type ButtonProps = {
+  text: string;
+  buttonAction: () => void;
+};
 
-const Button = ({ text, buttonAction }) => {
+const Button = ({ text, buttonAction }: ButtonProps): JSX.Element => {
   const handleClick = () => {
     buttonAction();
   };

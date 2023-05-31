@@ -1,7 +1,7 @@
 import axios from "axios";
 import { saveUserDetails } from "../../utils/utils";
 
-const fetchUserDetails = async () => {
+const fetchUserDetails = async ():Promise<object> => {
   const response = await axios.get(`https://randomuser.me/api`);
   const { data } = response;
   const { results } = data;

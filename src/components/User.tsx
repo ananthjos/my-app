@@ -1,5 +1,18 @@
-const User = ({ userDetail }) => {
-  const { name, email } = userDetail;
+interface UserDetail {
+  name: Name;
+  email: string;
+}
+
+interface Name {
+  first: string;
+  last: string;
+  title: string;
+}
+
+const User = ({ userDetail }: { userDetail: UserDetail }): JSX.Element => {
+  // const { name, email }: { name: object; email: string } = userDetail;
+  const name: Name = userDetail?.name;
+  const email: string = userDetail?.email;
 
   return (
     <div>
