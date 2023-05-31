@@ -31,16 +31,10 @@ export function getUserDetailObject(response: Response): UserDetail {
   return { name: name, email: email };
 }
 
-export function saveUserDetails(data: object): void {
+export function saveUserDetails(data: Response): void {
   let existingUsersData = JSON.parse(
-    localStorage.getItem("userDetails") || "{}"
+    localStorage.getItem("userDetails") || "[]"
   );
-
-  let parsedExistingData: object[] = JSON.parse(existingUsersData);
-
-  parsedExistingData.push(data);
-
-  existingUsersData = JSON.stringify(parsedExistingData);
-
-  localStorage.setItem("userDetails", existingUsersData);
+  existingUsersData.push(data);
+  localStorage.setItem("userDetails", JSON.stringify(existingUsersData));
 }
