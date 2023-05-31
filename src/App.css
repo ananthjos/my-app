@@ -23,11 +23,7 @@
 
 button {
   width: 100%;
-  border: 2px solid #cbc3e3 !important;
-}
-
-button :hover {
-  background-color: #cbc3e3 !important;
+  font-weight: bold;
 }
 
 .card-border {

@@ -9,7 +9,11 @@ const Button = ({ text, buttonAction }: ButtonProps): JSX.Element => {
   };
 
   return (
-    <button type='button' onClick={handleClick} className='btn btn-primary'>
+    <button
+      type='button'
+      onClick={handleClick}
+      className='btn btn-outline-secondary'
+    >
       {text}
     </button>
   );
