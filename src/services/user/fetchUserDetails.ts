@@ -1,19 +1,17 @@
 import axios from "axios";
-import { saveUserDetails } from "../../utils/utils";
-import { Response } from "../../utils/utils";
+import { checkForLocalStorage } from "../../utils/utils";
 
-const fetchUserDetails = async (): Promise<Response> => {
-  const response = await axios.get(`https://randomuser.me/api`);
-  const { data } = response;
-  const { results } = data;
+const fetchUserDetails = async () => {
+  try {
+    const response = await axios.get(`https://randomuser.me/api`);
+    const { data } = response;
+    const { results } = data;
+    checkForLocalStorage(results[0]);
 
-  if (localStorage.getItem("userDetails")) {
-    saveUserDetails(results[0]);
-  } else {
-    localStorage.setItem("userDetails", JSON.stringify([]));
+    return { result: results[0], status: response.status };
+  } catch (e) {
+    console.log(e);
   }
-
-  return results[0];
 };
 
 export default fetchUserDetails;

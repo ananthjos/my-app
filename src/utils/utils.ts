@@ -9,6 +9,11 @@ export interface Name {
   title: string;
 }
 
+export interface finalResponse {
+  result: Response;
+  status: number;
+}
+
 export interface Response {
   gender: string;
   name: Name;
@@ -37,4 +42,12 @@ export function saveUserDetails(data: Response): void {
   );
   existingUsersData.push(data);
   localStorage.setItem("userDetails", JSON.stringify(existingUsersData));
+}
+
+export function checkForLocalStorage(data: any) {
+  if (localStorage.getItem("userDetails")) {
+    saveUserDetails(data);
+  } else {
+    localStorage.setItem("userDetails", JSON.stringify([]));
+  }
 }
